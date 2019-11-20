@@ -1,0 +1,99 @@
+.swiper-wrapper {
+  margin-top: 20px;
+}
+
+#navbarNav {
+  /*padding-top: 40px;*/
+  /*background-color: #b41a1a;*/
+}
+
+.navbar.navbar-light.navbar-expand-md.navigation-clean-search.fixed-top {
+  background-color: #efeff2;
+  margin-top: 38px;
+}
+
+.navbar.navbar-dark.navbar-expand-lg.fixed-top.bg-white.portfolio-navbar.gradient {
+  height: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item {
+  padding-right: 5px;
+}
+
+.icon.ion-android-mail {
+  float: left;
+  margin: 3px;
+}
+
+.nav-item {
+  padding-right: 0px;
+}
+
+.d-lg-flex.align-items-lg-center {
+  text-decoration: none;
+  color: #6f6e6e;
+  font-size: 16px;
+  padding: 0px;
+  margin-right: 10px;
+  letter-spacing: 0px;
+  font-weight: bold;
+}
+
+.fa.fa-whatsapp {
+  font-size: 28px;
+  color: #25D366;
+  margin-left: -2px;
+  margin-right: 2px;
+}
+
+.d-lg-flex.align-items-lg-center {
+  text-decoration: none;
+  color: #6f6e6e;
+  font-size: 16px;
+  padding: 0px;
+  margin-right: 10px;
+  letter-spacing: 0px;
+  font-weight: bold;
+  width: 128px;
+}
+
+.d-lg-flex.align-items-lg-center {
+  text-decoration: none;
+  color: #6f6e6e;
+  font-size: 16px;
+  padding: 0px;
+  margin-right: 10px;
+  letter-spacing: 0px;
+  font-weight: bold;
+  width: 128px;
+}
+
+.d-lg-flex.align-items-lg-center {
+  text-decoration: none;
+  color: #6f6e6e;
+  font-size: 16px;
+  padding: 0px;
+  font-weight: bold;
+  width: 138px;
+}
+
+.fa.fa-phone {
+  font-size: 20px;
+}
+
+.portfolio-block.projects-cards {
+  padding-top: 10px;
+}
+
+h2 {
+  padding-top: 15px;
+}
+
+.rem12-5{
+    width: 12.5rem;
+}
