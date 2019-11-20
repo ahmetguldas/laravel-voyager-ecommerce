@@ -54,7 +54,7 @@
             <section class="portfolio-block projects-cards">
                 <div class="container">
                     <div class="heading">
-                        <h2>pROMOSYON ÜRÜNLERİ</h2>
+                        <h2>PROMOSYON ÜRÜNLERİ</h2>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
