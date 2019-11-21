@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 18 Kas 2019, 15:40:01
+-- Üretim Zamanı: 21 Kas 2019, 15:51:28
 -- Sunucu sürümü: 5.7.26
 -- PHP Sürümü: 7.2.18
 
@@ -37,6 +37,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `categories_slug_unique` (`slug`),
   KEY `categories_parent_id_foreign` (`parent_id`)
@@ -46,9 +48,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Tablo döküm verisi `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 'Category 1', 'category-1', '2019-11-17 06:20:20', '2019-11-17 06:20:20'),
-(2, NULL, 1, 'Category 2', 'category-2', '2019-11-17 06:20:20', '2019-11-17 06:20:20');
+INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`, `image`, `description`) VALUES
+(3, NULL, 1, 'deneme kategori', 'deneme-kategori', '2019-11-20 12:40:51', '2019-11-20 12:40:51', 'categories\\November2019\\IPS1zhoBCjZuUr7JfFl3.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `data_rows` (
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `data_rows`
@@ -101,13 +102,13 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
 (20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
 (21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
-(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
-(24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
-(25, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 4),
-(26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
-(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
-(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
+(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(23, 4, 'parent_id', 'select_dropdown', 'Ana Kategori', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- Yok --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 3),
+(24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 4),
+(25, 4, 'name', 'text', 'Ad', 1, 1, 1, 1, 1, 1, '{}', 5),
+(26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 7),
+(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, '{}', 8),
+(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
 (29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
 (31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
@@ -136,10 +137,24 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
 (55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
 (56, 7, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(57, 7, 'name', 'text', 'Name', 0, 1, 1, 1, 1, 1, '{}', 2),
-(58, 7, 'description', 'rich_text_box', 'Description', 0, 1, 1, 1, 1, 1, '{}', 3),
-(59, 7, 'price', 'number', 'Price', 0, 1, 1, 1, 1, 1, '{}', 4),
-(60, 7, 'image', 'multiple_images', 'Image', 0, 1, 1, 1, 1, 1, '{}', 5);
+(57, 7, 'name', 'text', 'Başlık', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|min:5\",\"messages\":{\"required\":\":attribute bo\\u015f b\\u0131rak\\u0131lmamal\\u0131d\\u0131r.\",\"min\":\":attribute alan\\u0131 :max de\\u011ferde olmal\\u0131d\\u0131r.\"}}}', 3),
+(58, 7, 'description', 'rich_text_box', 'Açıklama', 0, 0, 1, 1, 1, 1, '{}', 4),
+(59, 7, 'price', 'number', 'Fiyat', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|min:1\",\"messages\":{\"required\":\":attribute bo\\u015f b\\u0131rak\\u0131lmamal\\u0131d\\u0131r.\",\"max\":\":attribute alan\\u0131 :max de\\u011ferde olmal\\u0131d\\u0131r.\"}}}', 5),
+(60, 7, 'image', 'image', 'Resim', 0, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 2),
+(61, 7, 'created_at', 'timestamp', 'Oluşturma Tarihi', 0, 1, 1, 1, 0, 1, '{}', 8),
+(62, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(63, 7, 'KDV', 'select_dropdown', 'KDV', 0, 0, 1, 1, 1, 1, '{\"default\":\"18\",\"options\":{\"8\":\"%8\",\"18\":\"%18\"}}', 6),
+(65, 7, 'seo', 'text', 'Seo URL', 0, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 7),
+(66, 7, 'status', 'select_dropdown', 'Status', 0, 1, 1, 1, 1, 1, '{\"default\":\"1\",\"options\":{\"0\":\"Kapal\\u0131\",\"1\":\"A\\u00e7\\u0131k\"}}', 10),
+(67, 4, 'image', 'image', 'Resim', 1, 1, 1, 1, 1, 1, '{}', 2),
+(68, 4, 'description', 'text', 'Açıklama', 0, 1, 1, 1, 1, 1, '{}', 6),
+(69, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(70, 12, 'popup_name', 'text', 'Başlık', 0, 1, 1, 1, 1, 1, '{}', 3),
+(71, 12, 'popup_image', 'image', 'Resim', 0, 1, 1, 1, 1, 1, '{}', 2),
+(72, 12, 'popup_isactive', 'checkbox', 'Durum', 0, 1, 1, 1, 1, 1, '{\"default\":\"1\",\"options\":{\"0\":\"Kapal\\u0131\",\"1\":\"A\\u00e7\\u0131k\"}}', 5),
+(73, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 0, 0, 0, 0, '{}', 6),
+(74, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
+(75, 12, 'popup_url', 'text', 'URL', 0, 1, 1, 1, 1, 1, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -167,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `data_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `data_types_name_unique` (`name`),
   UNIQUE KEY `data_types_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `data_types`
@@ -177,10 +192,12 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2019-11-17 06:20:18', '2019-11-17 06:20:18'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2019-11-17 06:20:18', '2019-11-17 06:20:18'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2019-11-17 06:20:18', '2019-11-17 06:20:18'),
-(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2019-11-17 06:20:20', '2019-11-17 06:20:20'),
+(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2019-11-17 06:20:20', '2019-11-21 06:53:37'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2019-11-17 06:20:20', '2019-11-17 06:20:20'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-11-17 06:20:20', '2019-11-17 06:20:20'),
-(7, 'products', 'products', 'Ürün', 'Ürünler', 'voyager-basket', 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-18 13:26:00', '2019-11-18 13:30:58');
+(7, 'products', 'products', 'Ürün', 'Ürünler', 'voyager-basket', 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-18 13:26:00', '2019-11-21 10:53:45'),
+(11, 'popup', 'popup', 'Popup', 'Popups', NULL, 'App\\Popup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(12, 'popups', 'popups', 'Popup', 'Popups', 'voyager-window-list', 'App\\Popup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-21 05:48:01', '2019-11-21 06:49:04');
 
 -- --------------------------------------------------------
 
@@ -245,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `parameters` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `menu_items_menu_id_foreign` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `menu_items`
@@ -256,17 +273,18 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (2, 1, 'Galeri', '', '_self', 'voyager-images', '#000000', NULL, 5, '2019-11-17 06:20:19', '2019-11-18 13:33:07', 'voyager.media.index', 'null'),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 8, '2019-11-17 06:20:19', '2019-11-18 13:33:18', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 7, '2019-11-17 06:20:19', '2019-11-18 13:33:18', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2019-11-17 06:20:19', '2019-11-17 06:20:19', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 10, '2019-11-17 06:20:19', '2019-11-21 05:49:04', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2019-11-17 06:20:19', '2019-11-18 13:27:50', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2019-11-17 06:20:19', '2019-11-18 13:27:50', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2019-11-17 06:20:19', '2019-11-18 13:27:50', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2019-11-17 06:20:19', '2019-11-18 13:27:50', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2019-11-17 06:20:19', '2019-11-18 13:27:50', 'voyager.settings.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 11, '2019-11-17 06:20:19', '2019-11-21 05:49:04', 'voyager.settings.index', NULL),
 (11, 1, 'Kategoriler', '', '_self', 'voyager-categories', '#000000', NULL, 2, '2019-11-17 06:20:20', '2019-11-18 13:28:07', 'voyager.categories.index', 'null'),
 (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2019-11-17 06:20:20', '2019-11-18 13:33:18', 'voyager.posts.index', NULL),
 (13, 1, 'Sayfalar', '', '_self', 'voyager-file-text', '#000000', NULL, 4, '2019-11-17 06:20:20', '2019-11-18 13:32:48', 'voyager.pages.index', 'null'),
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2019-11-17 06:20:20', '2019-11-18 13:27:50', 'voyager.hooks', NULL),
-(15, 1, 'Ürünler', '', '_self', 'voyager-basket', '#000000', NULL, 3, '2019-11-18 13:26:00', '2019-11-18 13:28:10', 'voyager.products.index', 'null');
+(15, 1, 'Ürünler', '', '_self', 'voyager-basket', '#000000', NULL, 3, '2019-11-18 13:26:00', '2019-11-18 13:28:10', 'voyager.products.index', 'null'),
+(17, 1, 'Popups', '', '_self', 'voyager-window-list', NULL, NULL, 9, '2019-11-21 05:48:01', '2019-11-21 05:49:04', 'voyager.popups.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -375,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `permissions_key_index` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `permissions`
@@ -427,7 +445,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (43, 'read_products', 'products', '2019-11-18 13:26:00', '2019-11-18 13:26:00'),
 (44, 'edit_products', 'products', '2019-11-18 13:26:00', '2019-11-18 13:26:00'),
 (45, 'add_products', 'products', '2019-11-18 13:26:00', '2019-11-18 13:26:00'),
-(46, 'delete_products', 'products', '2019-11-18 13:26:00', '2019-11-18 13:26:00');
+(46, 'delete_products', 'products', '2019-11-18 13:26:00', '2019-11-18 13:26:00'),
+(47, 'browse_popup', 'popup', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(48, 'read_popup', 'popup', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(49, 'edit_popup', 'popup', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(50, 'add_popup', 'popup', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(51, 'delete_popup', 'popup', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
+(52, 'browse_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
+(53, 'read_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
+(54, 'edit_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
+(55, 'add_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
+(56, 'delete_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01');
 
 -- --------------------------------------------------------
 
@@ -493,7 +521,42 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (43, 1),
 (44, 1),
 (45, 1),
-(46, 1);
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `popups`
+--
+
+DROP TABLE IF EXISTS `popups`;
+CREATE TABLE IF NOT EXISTS `popups` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `popup_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `popup_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `popup_isactive` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `popup_url` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `popups`
+--
+
+INSERT INTO `popups` (`id`, `popup_name`, `popup_image`, `popup_isactive`, `created_at`, `updated_at`, `popup_url`) VALUES
+(1, 'deneme', 'popups\\November2019\\u5ttSkeKwpavuGunoHfY.jpg', 1, NULL, '2019-11-21 06:29:47', '#');
 
 -- --------------------------------------------------------
 
@@ -542,13 +605,16 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` text COLLATE utf8mb4_unicode_ci,
-  `description` tinyint(4) DEFAULT NULL,
+  `description` tinytext COLLATE utf8mb4_unicode_ci,
   `price` decimal(10,0) DEFAULT NULL,
   `image` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `KDV` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `seo` text COLLATE utf8mb4_unicode_ci,
+  `status` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -593,7 +659,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `settings`
@@ -609,7 +675,19 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (7, 'admin.description', 'Admin Description', 'Welcome to Digitagram. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
-(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin');
+(10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
+(14, 'iletisim.mail', 'Mail Adresi', '', NULL, 'text', 6, 'İletişim'),
+(15, 'iletisim.whatsapp_tel', 'Whatsapp Numarası', '', NULL, 'text', 7, 'İletişim'),
+(16, 'iletisim.tel1', 'Tel 1', '', NULL, 'text', 8, 'İletişim'),
+(17, 'iletisim.tel2', 'Tel2', '', NULL, 'text', 9, 'İletişim'),
+(18, 'site.vizyon', 'Vizyon', '', NULL, 'rich_text_box', 10, 'Site'),
+(19, 'hakkimizda.vizyon', 'Vizyon', '', NULL, 'rich_text_box', 11, 'Hakkimizda'),
+(20, 'hakkimizda.misyon', 'Misyon', '', NULL, 'rich_text_box', 12, 'Hakkimizda'),
+(21, 'hakkimizda.hakkimizda', 'Hakkımızda', '', NULL, 'rich_text_box', 13, 'Hakkimizda'),
+(22, 'iletisim.facebook', 'Facebook Adresi', '', NULL, 'text', 14, 'İletişim'),
+(23, 'iletisim.instagram', 'Instagram', '', NULL, 'text', 15, 'İletişim'),
+(24, 'iletisim.twitter', 'Twitter', '', NULL, 'text', 16, 'İletişim'),
+(25, 'katalog.katalog', 'Katalog', '', NULL, 'file', 17, 'Katalog');
 
 -- --------------------------------------------------------
 
