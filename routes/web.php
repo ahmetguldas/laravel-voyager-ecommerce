@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/kategori', function(){
+   return view('categories');
+});
+
 
 
 Route::group(['prefix' => 'admin'], function () {
