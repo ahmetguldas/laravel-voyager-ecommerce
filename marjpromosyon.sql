@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1:3306
--- Üretim Zamanı: 21 Kas 2019, 15:51:28
+-- Üretim Zamanı: 22 Kas 2019, 15:56:19
 -- Sunucu sürümü: 5.7.26
 -- PHP Sürümü: 7.2.18
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `data_rows` (
   `order` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `data_rows`
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `data_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `data_types_name_unique` (`name`),
   UNIQUE KEY `data_types_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `data_types`
@@ -197,7 +197,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2019-11-17 06:20:20', '2019-11-17 06:20:20'),
 (7, 'products', 'products', 'Ürün', 'Ürünler', 'voyager-basket', 'App\\Product', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":\"id\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-18 13:26:00', '2019-11-21 10:53:45'),
 (11, 'popup', 'popup', 'Popup', 'Popups', NULL, 'App\\Popup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-11-21 05:38:59', '2019-11-21 05:38:59'),
-(12, 'popups', 'popups', 'Popup', 'Popups', 'voyager-window-list', 'App\\Popup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-21 05:48:01', '2019-11-21 06:49:04');
+(12, 'popups', 'popups', 'Popup', 'Popups', 'voyager-window-list', 'App\\Popup', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2019-11-21 05:48:01', '2019-11-21 06:49:04'),
+(13, 'slider', 'slider', 'Slider', 'Sliders', NULL, 'App\\Slider', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2019-11-22 07:23:59', '2019-11-22 07:23:59');
 
 -- --------------------------------------------------------
 
@@ -262,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `parameters` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `menu_items_menu_id_foreign` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `menu_items`
@@ -393,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `permissions_key_index` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `permissions`
@@ -455,7 +456,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (53, 'read_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
 (54, 'edit_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
 (55, 'add_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
-(56, 'delete_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01');
+(56, 'delete_popups', 'popups', '2019-11-21 05:48:01', '2019-11-21 05:48:01'),
+(57, 'browse_slider', 'slider', '2019-11-22 07:23:59', '2019-11-22 07:23:59'),
+(58, 'read_slider', 'slider', '2019-11-22 07:23:59', '2019-11-22 07:23:59'),
+(59, 'edit_slider', 'slider', '2019-11-22 07:23:59', '2019-11-22 07:23:59'),
+(60, 'add_slider', 'slider', '2019-11-22 07:23:59', '2019-11-22 07:23:59'),
+(61, 'delete_slider', 'slider', '2019-11-22 07:23:59', '2019-11-22 07:23:59');
 
 -- --------------------------------------------------------
 
@@ -531,7 +537,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (53, 1),
 (54, 1),
 (55, 1),
-(56, 1);
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1),
+(61, 1);
 
 -- --------------------------------------------------------
 
@@ -614,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `seo` text COLLATE utf8mb4_unicode_ci,
   `status` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -659,7 +670,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `settings`
@@ -671,23 +682,24 @@ INSERT INTO `settings` (`id`, `key`, `display_name`, `value`, `details`, `type`,
 (3, 'site.logo', 'Site Logo', '', '', 'image', 3, 'Site'),
 (4, 'site.google_analytics_tracking_id', 'Google Analytics Tracking ID', '(function(d, s, id) {             var js, fjs = d.getElementsByTagName(s)[0];             if (d.getElementById(id)) return;             js = d.createElement(s); js.id = id;             js.src = \"//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.10\";             fjs.parentNode.insertBefore(js, fjs);         }(document, \'script\', \'facebook-jssdk\'));', '', 'text', 4, 'Site'),
 (5, 'admin.bg_image', 'Admin Background Image', '', '', 'image', 5, 'Admin'),
-(6, 'admin.title', 'Admin Title', 'Digitagram', '', 'text', 1, 'Admin'),
+(6, 'admin.title', 'Admin Title', 'marjpromosyon', '', 'text', 1, 'Admin'),
 (7, 'admin.description', 'Admin Description', 'Welcome to Digitagram. The Missing Admin for Laravel', '', 'text', 2, 'Admin'),
 (8, 'admin.loader', 'Admin Loader', '', '', 'image', 3, 'Admin'),
 (9, 'admin.icon_image', 'Admin Icon Image', '', '', 'image', 4, 'Admin'),
 (10, 'admin.google_analytics_client_id', 'Google Analytics Client ID (used for admin dashboard)', NULL, '', 'text', 1, 'Admin'),
-(14, 'iletisim.mail', 'Mail Adresi', '', NULL, 'text', 6, 'İletişim'),
-(15, 'iletisim.whatsapp_tel', 'Whatsapp Numarası', '', NULL, 'text', 7, 'İletişim'),
-(16, 'iletisim.tel1', 'Tel 1', '', NULL, 'text', 8, 'İletişim'),
-(17, 'iletisim.tel2', 'Tel2', '', NULL, 'text', 9, 'İletişim'),
-(18, 'site.vizyon', 'Vizyon', '', NULL, 'rich_text_box', 10, 'Site'),
-(19, 'hakkimizda.vizyon', 'Vizyon', '', NULL, 'rich_text_box', 11, 'Hakkimizda'),
-(20, 'hakkimizda.misyon', 'Misyon', '', NULL, 'rich_text_box', 12, 'Hakkimizda'),
-(21, 'hakkimizda.hakkimizda', 'Hakkımızda', '', NULL, 'rich_text_box', 13, 'Hakkimizda'),
-(22, 'iletisim.facebook', 'Facebook Adresi', '', NULL, 'text', 14, 'İletişim'),
-(23, 'iletisim.instagram', 'Instagram', '', NULL, 'text', 15, 'İletişim'),
-(24, 'iletisim.twitter', 'Twitter', '', NULL, 'text', 16, 'İletişim'),
-(25, 'katalog.katalog', 'Katalog', '', NULL, 'file', 17, 'Katalog');
+(14, 'iletisim.mail', 'Mail Adresi', 'info@marjpromosyon.com', NULL, 'text', 6, 'İletişim'),
+(15, 'iletisim.whatsapp_tel', 'Whatsapp Numarası', '05436634911', NULL, 'text', 7, 'İletişim'),
+(16, 'iletisim.tel1', 'Tel 1', '0532 555 22 22', NULL, 'text', 8, 'İletişim'),
+(17, 'iletisim.tel2', 'Tel2', '0532 555 22 22', NULL, 'text', 9, 'İletişim'),
+(18, 'site.vizyon', 'Vizyon', NULL, NULL, 'rich_text_box', 10, 'Site'),
+(19, 'hakkimizda.vizyon', 'Vizyon', NULL, NULL, 'rich_text_box', 11, 'Hakkimizda'),
+(20, 'hakkimizda.misyon', 'Misyon', NULL, NULL, 'rich_text_box', 12, 'Hakkimizda'),
+(21, 'hakkimizda.hakkimizda', 'Hakkımızda', NULL, NULL, 'rich_text_box', 13, 'Hakkimizda'),
+(22, 'iletisim.facebook', 'Facebook Adresi', NULL, NULL, 'text', 14, 'İletişim'),
+(23, 'iletisim.instagram', 'Instagram', NULL, NULL, 'text', 15, 'İletişim'),
+(24, 'iletisim.twitter', 'Twitter', NULL, NULL, 'text', 16, 'İletişim'),
+(25, 'katalog.katalog', 'Katalog', '', NULL, 'file', 18, 'Katalog'),
+(26, 'katalog.katalog_baslik', 'Katalog Görünen Başlık', '2020 PDF KATALOĞUMUZU İNCELEMEK İÇİN TIKLAYINIZ.', NULL, 'text', 17, 'Katalog');
 
 -- --------------------------------------------------------
 
