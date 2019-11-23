@@ -10,11 +10,11 @@
     </nav>
     <main id="navbarNav" class="page lanidng-page">
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-search fixed-top">
-            <div class="container"><a class="navbar-brand" href="#">MarjPromosyon</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">menu</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="/">MarjPromosyon</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">menu</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse"
                     id="navcol-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Link 1</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/kategori">Tüm Kategoriler</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Link 2</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#">Link 3</a></li>
                     </ul>
