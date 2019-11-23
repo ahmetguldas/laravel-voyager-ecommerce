@@ -1,10 +1,14 @@
 @extends('layouts.index')
+
+
+
 @section('partials.slider')
 
 @endsection
 @section('slider')
 
 @endsection
+
 @section('content')
 <div class="features-boxed">
         <div class="container">
